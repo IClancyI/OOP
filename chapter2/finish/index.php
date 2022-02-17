@@ -6,7 +6,7 @@ $ships = $shipLoader->getShips();
 
 $errorMessage = '';
 if (isset($_GET['error'])) {
-    switch ($_GET['error']) {g
+    switch ($_GET['error']) {
         case 'missing_data':
             $errorMessage = 'Don\'t forget to select some ships to battle!';
             break;
