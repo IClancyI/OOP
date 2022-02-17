@@ -1,39 +1,47 @@
 <?php
-
-require_once __DIR__.'/lib/Ship.php';
-
-/**
- * @param Ship $someShip
- */
-function printShipSummary($someShip)
+class Ship
 {
-    echo 'Ship Name: '.$someShip->getName();
-    echo '<hr/>';
-    $someShip->sayHello();
-    echo '<hr/>';
-    echo $someShip->getNameAndSpecs(false);
-    echo '<hr/>';
-    echo $someShip->getNameAndSpecs(true);
+    public $name;
+    public $weaponPower = 0;
+    public $jediFactor = 0;
+    public $strength = 0;
+    public function sayHello()
+    {
+        echo 'Hello!';
+    }
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function getNameAndSpecs($useShortFormat)
+    {
+        if ($useShortFormat) {
+            return sprintf(
+                '%s: %s/%s/%s',
+                $this->name,
+                $this->weaponPower,
+                $this->jediFactor,
+                $this->strength
+            );
+        } else {
+            return sprintf(
+                '%s: w:%s, j:%s, s:%s',
+                $this->name,
+                $this->weaponPower,
+                $this->jediFactor,
+                $this->strength
+            );
+        }
+    }
 }
-
 // but it doesn't do anything yet...
 $myShip = new Ship();
 $myShip->name = 'TIE Fighter';
 $myShip->weaponPower = 10;
-
-printShipSummary($myShip);
-
-$otherShip = new Ship();
-$otherShip->name = 'Imperial Shuttle';
-$otherShip->weaponPower = 5;
-$otherShip->strength = 50;
-
+echo 'Ship Name: '.$myShip->getName();
 echo '<hr/>';
-printShipSummary($otherShip);
+$myShip->sayHello();
 echo '<hr/>';
-
-if ($myShip->doesGivenShipHaveMoreStrength($otherShip)) {
-    echo $otherShip->name.' has more strength';
-} else {
-    echo $myShip->name.' has more strength';
-}
+echo $myShip->getNameAndSpecs(false);
+echo '<hr/>';
+echo $myShip->getNameAndSpecs(true);
